@@ -68,7 +68,38 @@ class MSA(WikiPage):
     def build(self):
         self.get_data()
 
+class Regions(WikiPage):
+    title = "List_of_regions_of_the_United_States"
+
+    def get_ul(self):
+        self.get_html_tree()
+        ul_select = lxml.cssselect.CSSSelector('ul:contains("Region 1")')
+        self.ul = ul_select(self.html_tree)[0]
+
+    def get_data(self):
+        self.get_ul()
+        self.data = []
+        for region_li in self.ul.xpath('./li'):
+            region = {}
+            region["name"] = region_li.xpath('.//a/text()')[0]
+            region["divisions"] = []
+            for division_li in region_li.xpath('.//li'):
+                division = {}
+                division["name"] = division_li.xpath('.//a/text()')[0]
+                division["states"] = division_li.xpath('.//a/text()')[1:]
+                region["divisions"].append(division)
+            self.data.append(region)
+
+    def build(self):
+        self.get_data()
+
+class Abbreviations(WikiPage):
+    pass
+
 if __name__ == "__main__":
     msa = MSA()
     msa.build()
     print msa.data
+    regions = Regions()
+    regions.build()
+    print regions.data
