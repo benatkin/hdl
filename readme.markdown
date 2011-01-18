@@ -106,12 +106,40 @@ first. To add an additional level, I've broken these into regions.
         *   Washington
             *   Seattle-Tacoma-Bellevue, WA MSA (15)
 
-## In the wild
+This is a lot of information. The outline is a bit unweildly if I just
+want to see which MSAs in Florida are in the top 50 in the country. If I
+just wanted that, information, I could make a new outline with the root
+at Florida. Or, better yet, I could keep the same outline, but just
+view Florida and its children. In outliner parlance, this is called
+*hoisting*.
 
-### Two Levels
+The previous outline, with the *Florida* node hoisted, looks like this:
 
-### Beyond
+*   Florida
+    *   Miami-Fort Lauderdale-Pompano Beach, FL MSA (7)
+    *   Tampa-St. Petersburg-Clearwater, FL MSA (19)
+    *   Orlando-Kissimmee-Sanford, FL MSA (27)
+    *   Jacksonville, FL MSA (40)
 
 # Deep Linking
 
+I read about the term Deep Linking a few days ago when a 
+[NYTimes article about a new open source project](http://open.blogs.nytimes.com/2011/01/11/emphasis-update-and-source/#h[WtEIyw,2]) got 
+[posted to Hacker News](http://news.ycombinator.com/item?id=2093820).
+
+After looking further, there are several things deep linking can mean:
+
+*   Linking to an individual page or image within a site, rather than
+    the hope page. This is [the meaning on Wikipedia](http://en.wikipedia.org/wiki/Deep_linking),
+    but it's not what this page is about.
+*   Linking to a section within a page using anchor tags. This is fairly
+    common. It's supported on Wikipedia through a MediaWiki feature that
+    [generates anchor tags and a table of contents for pages](http://en.wikibooks.org/wiki/MediaWiki_User_Guide/Sections_and_Headings#Headings_not_in_TOC).
+*   Linking to some content using a fancy tool like the [NYTimes deep linking
+    project, Emphasis.](https://github.com/NYTimes/Emphasis)
+
+The middle one, the facility Wikipedia has, is the one I've used the
+most. I've found it very useful for linking to Wikipedia. It would
+be nice if it was supported on markdown documents on GitHub, like this
+one.
 
