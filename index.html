@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hoisting and Deep Linking</title>
+</head>
+<body>
+<h1 id="introduction">Introduction</h1>
+<p><em>Hoisting</em> and <em>Deep Linking</em> are a couple of related software terms I've
+encountered recently. They both help large documents behave like smaller
+documents.</p>
+<h1 id="hoisting">Hoisting</h1>
+<p>I learned about hoisting about a year ago when I encountered outliners.com in
+Dave Winer's sidebar. Hoisting is taking one node of an outline and making it
+the root node of a view. It dates back until the 80s, and still shows up
+today, usually under different names.</p>
+<h2 id="city-example">City Example</h2>
+<p>As an example, I'll use an unordered list, of the 50
+<a href="http://en.wikipedia.org/wiki/Table_of_United_States_Metropolitan_Statistical_Areas">largest metropolitain areas in the U. S., by state</a>.
+Some of these metro areas are spread across states; I'll use the state which
+has most of the metro's people living in it, which is conveniently listed
+first. To add an additional level, I've broken these into regions.</p>
+<ul>
+<li>Metropolitain Statistical Areas<ul>
+<li>Northeast<ul>
+<li>Connecticut<ul>
+<li>Hartford-West Hartford-East Hartford, CT MSA (45)</li>
+</ul>
+</li>
+<li>Massachusetts<ul>
+<li>Boston-Cambridge-Quincy, MA-NH MSA (10)</li>
+</ul>
+</li>
+<li>New York<ul>
+<li>New York-Northern New Jersey-Long Island, NY-NJ-PA MSA (1)</li>
+<li>Buffalo-Niagara Falls, NY MSA (50)</li>
+</ul>
+</li>
+<li>Pennsylvania<ul>
+<li>Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA (5)</li>
+<li>Pittsburgh, PA MSA (22)</li>
+</ul>
+</li>
+<li>Rhode Island<ul>
+<li>Providence-New Bedford-Fall River, RI-MA MSA (37)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Midwest<ul>
+<li>Illinois<ul>
+<li>Chicago-Joliet-Naperville, IL-IN-WI MSA (3)</li>
+</ul>
+</li>
+<li>Indiana<ul>
+<li>Indianapolis-Carmel, IN MSA (34)</li>
+</ul>
+</li>
+<li>Michigan<ul>
+<li>Detroit-Warren-Livonia, MI MSA (11)</li>
+</ul>
+</li>
+<li>Minnesota<ul>
+<li>Minneapolis-St. Paul-Bloomington, MN-WI MSA (16)</li>
+</ul>
+</li>
+<li>Missouri<ul>
+<li>St. Louis, MO-IL MSA (18)</li>
+<li>Kansas City, MO-KS MSA (29)</li>
+</ul>
+</li>
+<li>Ohio<ul>
+<li>Cincinnati-Middletown, OH-KY-IN MSA (24)</li>
+<li>Cleveland-Elyria-Mentor, OH MSA (26)</li>
+<li>Columbus, OH MSA (32)</li>
+</ul>
+</li>
+<li>Wisconsin<ul>
+<li>Milwaukee-Waukesha-West Allis, WI MSA (39)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>South<ul>
+<li>Alabama<ul>
+<li>Birmingham-Hoover, AL MSA (47)</li>
+</ul>
+</li>
+<li>District of Columbia<ul>
+<li>Washington-Arlington-Alexandria, DC-VA-MD-WV MSA (8)</li>
+</ul>
+</li>
+<li>Florida<ul>
+<li>Miami-Fort Lauderdale-Pompano Beach, FL MSA (7)</li>
+<li>Tampa-St. Petersburg-Clearwater, FL MSA (19)</li>
+<li>Orlando-Kissimmee-Sanford, FL MSA (27)</li>
+<li>Jacksonville, FL MSA (40)</li>
+</ul>
+</li>
+<li>Georgia<ul>
+<li>Atlanta-Sandy Springs-Marietta, GA MSA (9)</li>
+</ul>
+</li>
+<li>Kentucky<ul>
+<li>Louisville/Jefferson County, KY-IN MSA (42)</li>
+</ul>
+</li>
+<li>Louisiana<ul>
+<li>New Orleans-Metairie-Kenner, LA MSA (46)</li>
+</ul>
+</li>
+<li>Maryland<ul>
+<li>Baltimore-Towson, MD MSA (20)</li>
+</ul>
+</li>
+<li>North Carolina<ul>
+<li>Charlotte-Gastonia-Rock Hill, NC-SC MSA (33)</li>
+<li>Raleigh-Cary, NC MSA (49)</li>
+</ul>
+</li>
+<li>Oklahoma<ul>
+<li>Oklahoma City, OK MSA (44)</li>
+</ul>
+</li>
+<li>Tennessee<ul>
+<li>Nashville-Davidson–Murfreesboro–Franklin, TN MSA (38)</li>
+<li>Memphis, TN-MS-AR MSA (41)</li>
+</ul>
+</li>
+<li>Texas<ul>
+<li>Dallas-Fort Worth-Arlington, TX MSA (4)</li>
+<li>Houston-Sugar Land-Baytown, TX MSA (6)</li>
+<li>San Antonio-New Braunfels, TX MSA (28)</li>
+<li>Austin-Round Rock-San Marcos, TX MSA (35)</li>
+</ul>
+</li>
+<li>Virginia<ul>
+<li>Virginia Beach-Norfolk-Newport News, VA-NC MSA (36)</li>
+<li>Richmond, VA MSA (43)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>West<ul>
+<li>Arizona<ul>
+<li>Phoenix-Mesa-Glendale, AZ MSA (12)</li>
+</ul>
+</li>
+<li>California<ul>
+<li>Los Angeles-Long Beach-Santa Ana, CA MSA (2)</li>
+<li>San Francisco-Oakland-Fremont, CA MSA (13)</li>
+<li>Riverside-San Bernardino-Ontario, CA MSA (14)</li>
+<li>San Diego-Carlsbad-San Marcos, CA MSA (17)</li>
+<li>Sacramento–Arden-Arcade–Roseville, CA MSA (25)</li>
+<li>San Jose-Sunnyvale-Santa Clara, CA MSA (31)</li>
+</ul>
+</li>
+<li>Colorado<ul>
+<li>Denver-Aurora-Broomfield, CO MSA (21)</li>
+</ul>
+</li>
+<li>Nevada<ul>
+<li>Las Vegas-Paradise, NV MSA (30)</li>
+</ul>
+</li>
+<li>Oregon<ul>
+<li>Portland-Vancouver-Hillsboro, OR-WA MSA (23)</li>
+</ul>
+</li>
+<li>Utah<ul>
+<li>Salt Lake City, UT MSA (48)</li>
+</ul>
+</li>
+<li>Washington<ul>
+<li>Seattle-Tacoma-Bellevue, WA MSA (15)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>This is a lot of information. The outline is a bit unweildly if I just
+want to see which MSAs in Florida are in the top 50 in the country. If I
+just wanted that, information, I could make a new outline with the root
+at Florida. Or, better yet, I could keep the same outline, but just
+view Florida and its children. In outliner parlance, this is called
+<em>hoisting</em>.</p>
+<p>The previous outline, with the <em>Florida</em> node hoisted, looks like this:</p>
+<ul>
+<li>Florida<ul>
+<li>Miami-Fort Lauderdale-Pompano Beach, FL MSA (7)</li>
+<li>Tampa-St. Petersburg-Clearwater, FL MSA (19)</li>
+<li>Orlando-Kissimmee-Sanford, FL MSA (27)</li>
+<li>Jacksonville, FL MSA (40)</li>
+</ul>
+</li>
+</ul>
+<h1 id="deep-linking">Deep Linking</h1>
+<p>I read about the term Deep Linking a few days ago when a 
+<a href="http://open.blogs.nytimes.com/2011/01/11/emphasis-update-and-source/#h[WtEIyw,2]">NYTimes article about a new open source project</a> got 
+<a href="http://news.ycombinator.com/item?id=2093820">posted to Hacker News</a>.</p>
+<p>After looking further, there are several things deep linking can mean:</p>
+<ul>
+<li>Linking to an individual page or image within a site, rather than
+    the hope page. This is <a href="http://en.wikipedia.org/wiki/Deep_linking">the meaning on Wikipedia</a>,
+    but it's not what this page is about.</li>
+<li>Linking to a section within a page using anchor tags. This is fairly
+    common. It's supported on Wikipedia through a MediaWiki feature that
+    <a href="http://en.wikibooks.org/wiki/MediaWiki_User_Guide/Sections_and_Headings#Headings_not_in_TOC">generates anchor tags and a table of contents for pages</a>.</li>
+<li>Linking to some content using a fancy tool like the <a href="https://github.com/NYTimes/Emphasis">NYTimes deep linking
+    project, Emphasis.</a></li>
+</ul>
+<p>The middle one, the facility Wikipedia has, is the one I've used the
+most. I've found it very useful for linking to Wikipedia. It would
+be nice if it was supported on markdown documents on GitHub, like this
+one.</p>
+</body>
+</html>
