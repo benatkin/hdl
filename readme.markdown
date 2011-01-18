@@ -147,7 +147,7 @@ one.
 
 github doesn't put anchors in markdown headers, and neither do most
 markdown libraries. Python's Markdown library has an extension for it,
-though. It replaces a [TOC] token with a ul containing a table of
+though. It replaces a \[TOC\] token with a ul containing a table of
 contents, and generates anchors. The extension is included; after
 running `pip install Markdown`, the following code can be run to convert
 this page's markdown to HTML with a table of contents:
@@ -180,7 +180,7 @@ this page's markdown to HTML with a table of contents:
 
         def render(self):
             self.read_md()
-            self.md = "[TOC]\n\n" + self.md
+            self.md = "\[TOC\]\n\n" + self.md
             md = markdown.Markdown(extensions=['toc'])
             return HTML_START + md.convert(self.md) + HTML_END
 

@@ -229,33 +229,51 @@ most. I've found it very useful for linking to Wikipedia. It would
 be nice if it was supported on markdown documents on GitHub, like this
 one.</p>
 <h2 id="in-this-document">In This Document</h2>
-<div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#hoisting">Hoisting</a><ul>
-<li><a href="#city-example">City Example</a></li>
-</ul>
-</li>
-<li><a href="#deep-linking">Deep Linking</a><ul>
-<li><a href="#in-this-document">In This Document</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<pre><div class="toc">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#hoisting">Hoisting</a><ul>
-<li><a href="#city-example">City Example</a></li>
-</ul>
-</li>
-<li><a href="#deep-linking">Deep Linking</a><ul>
-<li><a href="#in-this-document">In This Document</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</pre>
+<p>github doesn't put anchors in markdown headers, and neither do most
+markdown libraries. Python's Markdown library has an extension for it,
+though. It replaces a [TOC] token with a ul containing a table of
+contents, and generates anchors. The extension is included; after
+running <code>pip install Markdown</code>, the following code can be run to convert
+this page's markdown to HTML with a table of contents:</p>
+<pre><code>import markdown
+import codecs
+
+HTML_START = """
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Hoisting and Deep Linking&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+""".lstrip()
+
+HTML_END = """
+&lt;/body&gt;
+&lt;/html&gt;
+"""
+
+class IndexPage(object):
+    md_filename = 'readme.markdown'
+    html_filename = 'index.html'
+
+    def read_md(self):
+        with codecs.open(self.md_filename, mode="r", encoding="utf8") as f:
+            self.md = f.read()
+
+    def render(self):
+        self.read_md()
+        self.md = "\[TOC\]\n\n" + self.md
+        md = markdown.Markdown(extensions=['toc'])
+        return HTML_START + md.convert(self.md) + HTML_END
+
+    def write_html(self):
+        with codecs.open(self.html_filename, mode="w", encoding="utf8") as f:
+            f.write(self.render())
+
+if __name__ == '__main__':
+    IndexPage().write_html()
+</code></pre>
 <p>Using the Table of Contents, a section, for example the <a href="http://benatkin.github.com/hdl/#city-example">City
 Example</a>, can be linked to.</p>
 </body>
