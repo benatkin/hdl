@@ -26,6 +26,7 @@ class IndexPage(object):
 
     def render(self):
         self.read_md()
+        self.md = "[TOC]\n\n" + self.md
         md = markdown.Markdown(extensions=['toc'])
         return HTML_START + md.convert(self.md) + HTML_END
 
