@@ -143,3 +143,53 @@ most. I've found it very useful for linking to Wikipedia. It would
 be nice if it was supported on markdown documents on GitHub, like this
 one.
 
+## In This Document
+
+github doesn't put anchors in markdown headers, and neither do most
+markdown libraries. Python's Markdown library has an extension for it,
+though. It replaces a [TOC] token with a ul containing a table of
+contents, and generates anchors. The extension is included; after
+running `pip install Markdown`, the following code can be run to convert
+this page's markdown to HTML with a table of contents:
+
+    import markdown
+    import codecs
+
+    HTML_START = """
+    <!doctype html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>Hoisting and Deep Linking</title>
+    </head>
+    <body>
+    """.lstrip()
+
+    HTML_END = """
+    </body>
+    </html>
+    """
+
+    class IndexPage(object):
+        md_filename = 'readme.markdown'
+        html_filename = 'index.html'
+
+        def read_md(self):
+            with codecs.open(self.md_filename, mode="r", encoding="utf8") as f:
+                self.md = f.read()
+
+        def render(self):
+            self.read_md()
+            self.md = "[TOC]\n\n" + self.md
+            md = markdown.Markdown(extensions=['toc'])
+            return HTML_START + md.convert(self.md) + HTML_END
+
+        def write_html(self):
+            with codecs.open(self.html_filename, mode="w", encoding="utf8") as f:
+                f.write(self.render())
+
+    if __name__ == '__main__':
+        IndexPage().write_html()
+
+Using the Table of Contents, a section, for example the [City
+Example](http://benatkin.github.com/hdl/#city-example), can be linked to.
